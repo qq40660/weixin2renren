@@ -34,15 +34,15 @@ def press(content, token):
             'access_token':token,
             'format':'JSON',
             'status':content.encode('utf-8'),
-            'method':'status.set',
-            'page_id':'' # 如果不是人人公共主页则删掉此行，否则填上公共主页的ID
+            'page_id':'', # 如果不是人人公共主页则删掉此行，否则填上公共主页的ID
+            'method':'status.set'
             }
     data = urllib.urlencode(data)
     url = 'https://api.renren.com/restserver.do'
     req = urllib2.Request(url, data)
     result = urllib2.urlopen(req).read()
     if 'error_code' in result:
-        print result
+        print result # 出错信息
         return 'failed'
     return 'okay'
 
@@ -83,7 +83,7 @@ class Weixin():
     def POST(self):
         '''处理微信消息'''
         data = web.data()
-        msg = parse_weixin(data) #解析微信消息
+        msg = parse_weixin(data) # 解析微信消息
         content = msg['Content']
         resp = press(content, self.access_token) # 发布到人人
         if resp != 'okay':
