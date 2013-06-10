@@ -63,7 +63,7 @@ def response(msg):
         <Content><![CDATA[%s]]></Content>
         <FuncFlag>0</FuncFlag>
         </xml>"""%(msg['FromUserName'], msg['ToUserName'],\
-                msg['CreateTime'], msg['MsgType'], msg['Content'], )
+                msg['CreateTime'], 'Text', msg['Content'], )
     return textTpl
 
 
@@ -83,6 +83,12 @@ class Weixin():
         '''处理微信消息'''
         data = web.data()
         msg = parse_weixin(data) # 解析微信消息
+        # 欢迎信息
+        if msg['MsgType'] == 'event':
+            if msg['Event'] == 'subscribe':
+                msg['Content'] = '欢迎添加微信'
+                return response(msg)
+                
         content = msg['Content']
         resp = press(content, self.access_token) # 发布到人人
         if resp != 'okay':
