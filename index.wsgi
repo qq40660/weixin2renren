@@ -14,9 +14,8 @@ urls = (
 )
 
 
-if __name__ == "__main__":
-    app = web.application(urls, globals()).wsgifunc()
-    application = sae.create_wsgi_app(app)
+app = web.application(urls, globals()).wsgifunc()
+application = sae.create_wsgi_app(app)
 
 
 def parse_weixin(data):
