@@ -7,3 +7,5 @@ weixin2renren
 基于SAE  
   
 详细教程: http://yakiang.com/blog/set-up-your-treehole
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yakiang/weixin2renren/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
